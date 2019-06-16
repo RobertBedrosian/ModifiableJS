@@ -1,0 +1,15 @@
+body {
+    background-color: brown;
+}
+
+.box {
+    background-color: teal;
+    border-color: azure;
+    border: 2px solid;
+    position: relative;
+    min-height: 100px;
+    min-width: 100px;
+    height: 100px;
+    width: 100px;
+    text-align: center;
+}
