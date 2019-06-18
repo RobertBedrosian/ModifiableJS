@@ -9,6 +9,6 @@ body {
     height: 100px;
     width: 100px;
     text-align: center;
-    min-width: 50px;
-    min-height: 20px;
+    min-width: 1em;
+    min-height: 1em;
 }
