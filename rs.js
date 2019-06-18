@@ -145,9 +145,6 @@ function Resizeable(box){
         else{
             box.style.width = (parseInt(boxStyle.width) + newX) + "px"
         }
-        // box.style.top = (box.offsetTop + newY) + "px";
-        // box.style.height = (parseInt(window.getComputedStyle(box).height) - newY) + "px";
-        // box.style.width = (parseInt(window.getComputedStyle(box).width) + newX) + "px"
     }
     function resizeBl(event){
         event = event || window.event;
@@ -157,9 +154,33 @@ function Resizeable(box){
         newY = event.clientY - origY;
         origX = event.clientX;
         origY = event.clientY;
-        box.style.left = (box.offsetLeft + newX) + "px";
-        box.style.height = (parseInt(boxStyle.height) + newY) + "px";
-        box.style.width = (parseInt(boxStyle.width) - newX) + "px"
+        //edge case, if box is at minimum specs, we want a certain behaviour
+        if((parseInt(boxStyle.minHeight) == parseInt(boxStyle.height))){
+            prevTop = parseInt(boxStyle.top);
+            if(newY >= 0 && event.clientY > parseInt(boxStyle.top) + 
+            parseInt(boxStyle.height)){
+                box.style.height = 
+                (parseInt(window.getComputedStyle(box).height) + newY) + "px";
+            }
+        }
+        else{
+            console.log('henlo')
+            box.style.height = (parseInt(boxStyle.height) + newY) + "px";
+        }
+        //edge case, if box is at minimum specs, we want a certain behaviour
+        if((parseInt(boxStyle.minWidth) == parseInt(boxStyle.width))){
+            if(newX <= 0 && event.clientX < parseInt(boxStyle.left)){
+                box.style.left = event.clientX + "px";
+                box.style.width = (parseInt(boxStyle.width) - newX) + "px"
+            }
+        }
+        else{
+            box.style.left = event.clientX + "px";
+            box.style.width = (parseInt(boxStyle.width) - newX) + "px"
+        }
+        // box.style.left = (box.offsetLeft + newX) + "px";
+        // box.style.height = (parseInt(boxStyle.height) + newY) + "px";
+        // box.style.width = (parseInt(boxStyle.width) - newX) + "px"
     }
     function resizeBr(event){
         event = event || window.event;
