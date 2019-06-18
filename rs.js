@@ -36,21 +36,37 @@ function Resizeable(box){
     var origX, origY, newX, newY = 0;
     function mousemove(event){
         if (event.offsetX <= 0 && event.offsetY <= 0){
-            box.style.cursor = "nwse-resize"
+            box.style.cursor = "nwse-resize";
             document.onmousedown = resize;
         }
         else if(event.offsetX >= parseInt(boxStyle.width)
         && event.offsetY <=0){
-            box.style.cursor = "nesw-resize"
+            box.style.cursor = "nesw-resize";
             document.onmousedown = resize;
         }
         else if(event.offsetX <= 0 && event.offsetY >= parseInt(boxStyle.height)){
-            box.style.cursor = "nesw-resize"
+            box.style.cursor = "nesw-resize";
             document.onmousedown = resize;
         }
-        else if(event.offsetX <= parseInt(boxStyle.width)
+        else if(event.offsetX >= parseInt(boxStyle.width)
         && event.offsetY >= parseInt(boxStyle.height)){
-            box.style.cursor = "nwse-resize"
+            box.style.cursor = "nwse-resize";
+            document.onmousedown = resize;
+        }
+        else if(event.offsetX <= 0){
+            box.style.cursor = "e-resize";
+            document.onmousedown = resize;
+        }
+        else if(event.offsetX >= parseInt(boxStyle.width)){
+            box.style.cursor ="e-resize";
+            document.onmousedown = resize;
+        }
+        else if(event.offsetY <= 0){
+            box.style.cursor ="n-resize";
+            document.onmousedown = resize;
+        }
+        else if(event.offsetY >= parseInt(boxStyle.height)){
+            box.style.cursor ="n-resize";
             document.onmousedown = resize;
         }
         else if(!document.onmousemove){
