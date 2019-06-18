@@ -4,12 +4,11 @@ body {
 
 .box {
     background-color: teal;
-    border-color: azure;
-    border: 2px solid;
-    position: relative;
-    min-height: 100px;
-    min-width: 100px;
+    border: 1px solid azure;
+    position: absolute;
     height: 100px;
     width: 100px;
     text-align: center;
+    min-width: 50px;
+    min-height: 20px;
 }
