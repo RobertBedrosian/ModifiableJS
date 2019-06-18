@@ -61,7 +61,6 @@ function Resizeable(box){
     function resize(event){
         event = event || window.event;
         event.preventDefault();
-        event.stopPropagation();
         origX = event.clientX;
         origY = event.clientY;
         if (event.offsetX <= 0 && event.offsetY <= 0){
@@ -83,6 +82,7 @@ function Resizeable(box){
     function resizeTl(event){
         event = event || window.event;
         event.preventDefault();
+        event.stopPropagation();
         document.documentElement.style.cursor = "nwse-resize";
         newX = event.clientX - origX;
         newY = event.clientY - origY;
@@ -117,6 +117,7 @@ function Resizeable(box){
     function resizeTr(event){
         event = event || window.event;
         event.preventDefault();
+        event.stopPropagation();
         document.documentElement.style.cursor = "nesw-resize";
         newX = event.clientX - origX;
         newY = event.clientY - origY;
@@ -150,6 +151,7 @@ function Resizeable(box){
     function resizeBl(event){
         event = event || window.event;
         event.preventDefault();
+        event.stopPropagation();
         document.documentElement.style.cursor = "nesw-resize";
         newX = event.clientX - origX;
         newY = event.clientY - origY;
@@ -183,6 +185,7 @@ function Resizeable(box){
     function resizeBr(event){
         event = event || window.event;
         event.preventDefault();
+        event.stopPropagation();
         document.documentElement.style.cursor = "nesw-resize";
         newX = event.clientX - origX;
         newY = event.clientY - origY;
