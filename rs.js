@@ -61,6 +61,7 @@ function Resizeable(box){
     function resize(event){
         event = event || window.event;
         event.preventDefault();
+        event.stopPropagation();
         origX = event.clientX;
         origY = event.clientY;
         if (event.offsetX <= 0 && event.offsetY <= 0){
@@ -178,9 +179,6 @@ function Resizeable(box){
             box.style.left = event.clientX + "px";
             box.style.width = (parseInt(boxStyle.width) - newX) + "px"
         }
-        // box.style.left = (box.offsetLeft + newX) + "px";
-        // box.style.height = (parseInt(boxStyle.height) + newY) + "px";
-        // box.style.width = (parseInt(boxStyle.width) - newX) + "px"
     }
     function resizeBr(event){
         event = event || window.event;
@@ -190,8 +188,29 @@ function Resizeable(box){
         newY = event.clientY - origY;
         origX = event.clientX;
         origY = event.clientY;
-        box.style.height = (parseInt(boxStyle.height) + newY) + "px";
-        box.style.width = (parseInt(boxStyle.width) + newX) + "px"
+        //edge case, if box is at minimum specs, we want a certain behaviour
+        if((parseInt(boxStyle.minHeight) == parseInt(boxStyle.height))){
+            prevTop = parseInt(boxStyle.top);
+            if(newY >= 0 && event.clientY > parseInt(boxStyle.top) +
+            parseInt(boxStyle.height)){
+                box.style.height = 
+                (parseInt(window.getComputedStyle(box).height) + newY) + "px";
+            }
+        }
+        else{
+            box.style.height = (parseInt(boxStyle.height) + newY) + "px";
+        }
+        //edge case, if box is at minimum specs, we want a certain behaviour
+        if((parseInt(boxStyle.minWidth) == parseInt(boxStyle.width))){
+            if(newX >= 0 && event.clientX > parseInt(boxStyle.left) +
+            parseInt(boxStyle.width)){
+                box.style.width = (parseInt(boxStyle.width) + newX) + "px"
+            }
+        }
+        else{
+            box.style.width = (parseInt(boxStyle.width) + newX) + "px"
+        }
+
     }
     function stopResize(event){
         document.onmousemove = null;
