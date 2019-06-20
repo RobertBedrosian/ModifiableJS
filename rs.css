@@ -4,7 +4,7 @@ body {
 
 .box {
     background-color: teal;
-    border: 1px solid azure;
+    border: 11px solid azure;
     position: absolute;
     height: 100px;
     width: 100px;

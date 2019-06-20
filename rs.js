@@ -119,26 +119,37 @@ function Resizeable(box){
         if((parseInt(boxStyle.minHeight) == parseInt(boxStyle.height))){
             prevTop = parseInt(boxStyle.top);
             if(newY <= 0 && event.clientY < parseInt(boxStyle.top)){
-                box.style.top = event.clientY + "px";
-                box.style.height = 
-                (parseInt(window.getComputedStyle(box).height) - newY) + "px";
+                box.style.top = parseInt(boxStyle.top) + newY + "px";
+                box.style.height = (parseInt(boxStyle.height) - newY) + "px"
             }
         }
         else{
-            console.log('henlo')
-            box.style.top = event.clientY + "px";
-            box.style.height = (parseInt(boxStyle.height) - newY) + "px";
+            if((parseInt(boxStyle.height) - newY) < parseInt(boxStyle.minHeight)){
+                box.style.top = (parseInt(boxStyle.top) + (parseInt(boxStyle.height) - parseInt(boxStyle.minHeight))) + "px";
+                box.style.height = parseInt(boxStyle.minHeight) + "px"            
+            }
+            else{
+                box.style.top = parseInt(boxStyle.top) + newY + "px";
+                box.style.height = (parseInt(boxStyle.height) - newY) + "px"
+            }
         }
         //edge case, if box is at minimum specs, we want a certain behaviour
         if((parseInt(boxStyle.minWidth) == parseInt(boxStyle.width))){
             if(newX <= 0 && event.clientX < parseInt(boxStyle.left)){
-                box.style.left = event.clientX + "px";
+                box.style.left = parseInt(boxStyle.left) + newX + "px";
                 box.style.width = (parseInt(boxStyle.width) - newX) + "px"
             }
         }
         else{
-            box.style.left = event.clientX + "px";
-            box.style.width = (parseInt(boxStyle.width) - newX) + "px"
+            console.log(parseInt(boxStyle.width) + " " + newX + " " + boxStyle.minWidth)
+            if((parseInt(boxStyle.width) - newX) < parseInt(boxStyle.minWidth)){
+                box.style.left = (parseInt(boxStyle.left) + (parseInt(boxStyle.width) - parseInt(boxStyle.minWidth))) + "px";
+                box.style.width = parseInt(boxStyle.minWidth) + "px"            
+            }
+            else{
+                box.style.left = parseInt(boxStyle.left) + newX + "px";
+                box.style.width = (parseInt(boxStyle.width) - newX) + "px"
+            }
         }
     }
     function resizeTr(event){
@@ -153,15 +164,19 @@ function Resizeable(box){
         if((parseInt(boxStyle.minHeight) == parseInt(boxStyle.height))){
             prevTop = parseInt(boxStyle.top);
             if(newY <= 0 && event.clientY < parseInt(boxStyle.top)){
-                box.style.top = event.clientY + "px";
-                box.style.height = 
-                (parseInt(window.getComputedStyle(box).height) - newY) + "px";
+                box.style.top = parseInt(boxStyle.top) + newY + "px";
+                box.style.height = (parseInt(boxStyle.height) - newY) + "px"
             }
         }
         else{
-            console.log('henlo')
-            box.style.top = event.clientY + "px";
-            box.style.height = (parseInt(boxStyle.height) - newY) + "px";
+            if((parseInt(boxStyle.height) - newY) < parseInt(boxStyle.minHeight)){
+                box.style.top = (parseInt(boxStyle.top) + (parseInt(boxStyle.height) - parseInt(boxStyle.minHeight))) + "px";
+                box.style.height = parseInt(boxStyle.minHeight) + "px"            
+            }
+            else{
+                box.style.top = parseInt(boxStyle.top) + newY + "px";
+                box.style.height = (parseInt(boxStyle.height) - newY) + "px"
+            }
         }
         //edge case, if box is at minimum specs, we want a certain behaviour
         if((parseInt(boxStyle.minWidth) == parseInt(boxStyle.width))){
@@ -192,19 +207,25 @@ function Resizeable(box){
             }
         }
         else{
-            console.log('henlo')
             box.style.height = (parseInt(boxStyle.height) + newY) + "px";
         }
         //edge case, if box is at minimum specs, we want a certain behaviour
         if((parseInt(boxStyle.minWidth) == parseInt(boxStyle.width))){
             if(newX <= 0 && event.clientX < parseInt(boxStyle.left)){
-                box.style.left = event.clientX + "px";
+                box.style.left = parseInt(boxStyle.left) + newX + "px";
                 box.style.width = (parseInt(boxStyle.width) - newX) + "px"
             }
         }
         else{
-            box.style.left = event.clientX + "px";
-            box.style.width = (parseInt(boxStyle.width) - newX) + "px"
+            console.log(parseInt(boxStyle.width) + " " + newX + " " + boxStyle.minWidth)
+            if((parseInt(boxStyle.width) - newX) < parseInt(boxStyle.minWidth)){
+                box.style.left = (parseInt(boxStyle.left) + (parseInt(boxStyle.width) - parseInt(boxStyle.minWidth))) + "px";
+                box.style.width = parseInt(boxStyle.minWidth) + "px"            
+            }
+            else{
+                box.style.left = parseInt(boxStyle.left) + newX + "px";
+                box.style.width = (parseInt(boxStyle.width) - newX) + "px"
+            }
         }
     }
     function resizeBr(event){
@@ -244,16 +265,24 @@ function Resizeable(box){
         event.stopPropagation();
         newX = event.clientX - origX;
         origX = event.clientX;
+        console.log("This is left " + boxStyle.left + " and this is width " + parseInt(boxStyle.width) + "and this is " + newX )
         //edge case, if box is at minimum specs, we want a certain behaviour
         if((parseInt(boxStyle.minWidth) == parseInt(boxStyle.width))){
             if(newX <= 0 && event.clientX < parseInt(boxStyle.left)){
-                box.style.left = event.clientX + "px";
+                box.style.left = parseInt(boxStyle.left) + newX + "px";
                 box.style.width = (parseInt(boxStyle.width) - newX) + "px"
             }
         }
         else{
-            box.style.left = event.clientX + "px";
-            box.style.width = (parseInt(boxStyle.width) - newX) + "px"
+            console.log(parseInt(boxStyle.width) + " " + newX + " " + boxStyle.minWidth)
+            if((parseInt(boxStyle.width) - newX) < parseInt(boxStyle.minWidth)){
+                box.style.left = (parseInt(boxStyle.left) + (parseInt(boxStyle.width) - parseInt(boxStyle.minWidth))) + "px";
+                box.style.width = parseInt(boxStyle.minWidth) + "px"            
+            }
+            else{
+                box.style.left = parseInt(boxStyle.left) + newX + "px";
+                box.style.width = (parseInt(boxStyle.width) - newX) + "px"
+            }
         }
 
     }
@@ -267,14 +296,19 @@ function Resizeable(box){
         if((parseInt(boxStyle.minHeight) == parseInt(boxStyle.height))){
             prevTop = parseInt(boxStyle.top);
             if(newY <= 0 && event.clientY < parseInt(boxStyle.top)){
-                box.style.top = event.clientY + "px";
-                box.style.height = 
-                (parseInt(window.getComputedStyle(box).height) - newY) + "px";
+                box.style.top = parseInt(boxStyle.top) + newY + "px";
+                box.style.height = (parseInt(boxStyle.height) - newY) + "px"
             }
         }
         else{
-            box.style.top = event.clientY + "px";
-            box.style.height = (parseInt(boxStyle.height) - newY) + "px";
+            if((parseInt(boxStyle.height) - newY) < parseInt(boxStyle.minHeight)){
+                box.style.top = (parseInt(boxStyle.top) + (parseInt(boxStyle.height) - parseInt(boxStyle.minHeight))) + "px";
+                box.style.height = parseInt(boxStyle.minHeight) + "px"            
+            }
+            else{
+                box.style.top = parseInt(boxStyle.top) + newY + "px";
+                box.style.height = (parseInt(boxStyle.height) - newY) + "px"
+            }
         }
     }
     function resizeRight(event){
