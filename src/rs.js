@@ -47,19 +47,19 @@ function Resizeable(box){
             document.onmousedown = resize;
         }
         else if(event.offsetX <= 0){
-            box.style.cursor = "e-resize";
+            box.style.cursor = "ew-resize";
             document.onmousedown = resize;
         }
         else if(event.offsetX >= parseInt(boxStyle.width)){
-            box.style.cursor ="e-resize";
+            box.style.cursor ="ew-resize";
             document.onmousedown = resize;
         }
         else if(event.offsetY <= 0){
-            box.style.cursor ="n-resize";
+            box.style.cursor ="ns-resize";
             document.onmousedown = resize;
         }
         else if(event.offsetY >= parseInt(boxStyle.height)){
-            box.style.cursor ="n-resize";
+            box.style.cursor ="ns-resize";
             document.onmousedown = resize;
         }
         else if(!document.onmousemove){
