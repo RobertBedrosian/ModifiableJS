@@ -3,7 +3,7 @@
 This is my attempt at making a small library to allow users to make any div element in their DOM resizeable ( from any edge and corner) and draggable.
 
 ### Quick Look
-https://jsfiddle.net/fyL3q7rs/
+https://jsfiddle.net/9xt0p4qm/
 
 ### End-User Requirements
 The end-user should have a div with specified min-width and min-height.
