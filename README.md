@@ -1,6 +1,6 @@
 # ModifiableJS
 
-This is my attempt at making a small library to allow users to make any div element in their DOM resizeable and draggable.
+This is my attempt at making a small library to allow users to make any div element in their DOM resizeable ( from any edge and/or corner) and draggable.
 
 ### Quick Look
 https://jsfiddle.net/fyL3q7rs/
