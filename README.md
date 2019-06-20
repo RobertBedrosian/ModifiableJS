@@ -2,6 +2,9 @@
 
 This is my attempt at making a small library to allow users to make any div element in their DOM resizeable and draggable.
 
+### Quick Look
+https://jsfiddle.net/fyL3q7rs/
+
 ### End-User Requirements
 The end-user should have a div with specified min-width and min-height.
 
