@@ -115,24 +115,83 @@ function Resizeable(box){
         newY = event.clientY - origY;
         origX = event.clientX;
         origY = event.clientY;
-        //edge case, if box is at minimum specs, we want a certain behaviour
-        if((parseInt(boxStyle.minHeight) == parseInt(boxStyle.height))){
-            prevTop = parseInt(boxStyle.top);
-            if(newY <= 0 && event.clientY < parseInt(boxStyle.top)){
-                box.style.top = parseInt(boxStyle.top) + newY + "px";
-                box.style.height = (parseInt(boxStyle.height) - newY) + "px"
-            }
-        }
-        else{
-            if((parseInt(boxStyle.height) - newY) < parseInt(boxStyle.minHeight)){
-                box.style.top = (parseInt(boxStyle.top) + (parseInt(boxStyle.height) - parseInt(boxStyle.minHeight))) + "px";
-                box.style.height = parseInt(boxStyle.minHeight) + "px"            
-            }
-            else{
-                box.style.top = parseInt(boxStyle.top) + newY + "px";
-                box.style.height = (parseInt(boxStyle.height) - newY) + "px"
-            }
-        }
+        topRS();
+        leftRS();        
+    }
+    function resizeTr(event){
+        event = event || window.event;
+        event.preventDefault();
+        event.stopPropagation();
+        newX = event.clientX - origX;
+        newY = event.clientY - origY;
+        origX = event.clientX;
+        origY = event.clientY;
+        topRS();
+        rightRS();
+    }
+    function resizeBl(event){
+        event = event || window.event;
+        event.preventDefault();
+        event.stopPropagation();
+        newX = event.clientX - origX;
+        newY = event.clientY - origY;
+        origX = event.clientX;
+        origY = event.clientY;
+        bottomRS();
+        leftRS();
+    }
+    function resizeBr(event){
+        event = event || window.event;
+        event.preventDefault();
+        event.stopPropagation();
+        newX = event.clientX - origX;
+        newY = event.clientY - origY;
+        origX = event.clientX;
+        origY = event.clientY;
+        bottomRS();
+        rightRS();
+    }
+    function resizeLeft(event){
+        event = event || window.event;
+        event.preventDefault();
+        event.stopPropagation();
+        newX = event.clientX - origX;
+        origX = event.clientX;
+        leftRS();
+
+    }
+    function resizeTop(event){
+        event = event || window.event;
+        event.preventDefault();
+        event.stopPropagation();
+        newY = event.clientY - origY;
+        origY = event.clientY;
+        topRS()
+    }
+    function resizeRight(event){
+        event = event || window.event;
+        event.preventDefault();
+        event.stopPropagation();
+        newX = event.clientX - origX;
+        origX = event.clientX;
+        rightRS();
+
+    }
+    function resizeBottom(event){
+        event = event || window.event;
+        event.preventDefault();
+        event.stopPropagation();
+        newY = event.clientY - origY;
+        origY = event.clientY;
+        bottomRS();
+    }
+    function stopResize(event){
+        document.onmousemove = null;
+        document.onmouseup = null;
+        document.documentElement.style.cursor = "";
+    }
+
+    function leftRS(){
         //edge case, if box is at minimum specs, we want a certain behaviour
         if((parseInt(boxStyle.minWidth) == parseInt(boxStyle.width))){
             if(newX <= 0 && event.clientX < parseInt(boxStyle.left)){
@@ -152,14 +211,7 @@ function Resizeable(box){
             }
         }
     }
-    function resizeTr(event){
-        event = event || window.event;
-        event.preventDefault();
-        event.stopPropagation();
-        newX = event.clientX - origX;
-        newY = event.clientY - origY;
-        origX = event.clientX;
-        origY = event.clientY;
+    function topRS(){
         //edge case, if box is at minimum specs, we want a certain behaviour
         if((parseInt(boxStyle.minHeight) == parseInt(boxStyle.height))){
             prevTop = parseInt(boxStyle.top);
@@ -178,6 +230,8 @@ function Resizeable(box){
                 box.style.height = (parseInt(boxStyle.height) - newY) + "px"
             }
         }
+    }
+    function rightRS(){
         //edge case, if box is at minimum specs, we want a certain behaviour
         if((parseInt(boxStyle.minWidth) == parseInt(boxStyle.width))){
             if(newX >= 0 && event.clientX > parseInt(boxStyle.left) 
@@ -189,53 +243,7 @@ function Resizeable(box){
             box.style.width = (parseInt(boxStyle.width) + newX) + "px"
         }
     }
-    function resizeBl(event){
-        event = event || window.event;
-        event.preventDefault();
-        event.stopPropagation();
-        newX = event.clientX - origX;
-        newY = event.clientY - origY;
-        origX = event.clientX;
-        origY = event.clientY;
-        //edge case, if box is at minimum specs, we want a certain behaviour
-        if((parseInt(boxStyle.minHeight) == parseInt(boxStyle.height))){
-            prevTop = parseInt(boxStyle.top);
-            if(newY >= 0 && event.clientY > parseInt(boxStyle.top) + 
-            parseInt(boxStyle.height)){
-                box.style.height = 
-                (parseInt(window.getComputedStyle(box).height) + newY) + "px";
-            }
-        }
-        else{
-            box.style.height = (parseInt(boxStyle.height) + newY) + "px";
-        }
-        //edge case, if box is at minimum specs, we want a certain behaviour
-        if((parseInt(boxStyle.minWidth) == parseInt(boxStyle.width))){
-            if(newX <= 0 && event.clientX < parseInt(boxStyle.left)){
-                box.style.left = parseInt(boxStyle.left) + newX + "px";
-                box.style.width = (parseInt(boxStyle.width) - newX) + "px"
-            }
-        }
-        else{
-            console.log(parseInt(boxStyle.width) + " " + newX + " " + boxStyle.minWidth)
-            if((parseInt(boxStyle.width) - newX) < parseInt(boxStyle.minWidth)){
-                box.style.left = (parseInt(boxStyle.left) + (parseInt(boxStyle.width) - parseInt(boxStyle.minWidth))) + "px";
-                box.style.width = parseInt(boxStyle.minWidth) + "px"            
-            }
-            else{
-                box.style.left = parseInt(boxStyle.left) + newX + "px";
-                box.style.width = (parseInt(boxStyle.width) - newX) + "px"
-            }
-        }
-    }
-    function resizeBr(event){
-        event = event || window.event;
-        event.preventDefault();
-        event.stopPropagation();
-        newX = event.clientX - origX;
-        newY = event.clientY - origY;
-        origX = event.clientX;
-        origY = event.clientY;
+    function bottomRS(){
         //edge case, if box is at minimum specs, we want a certain behaviour
         if((parseInt(boxStyle.minHeight) == parseInt(boxStyle.height))){
             prevTop = parseInt(boxStyle.top);
@@ -248,109 +256,5 @@ function Resizeable(box){
         else{
             box.style.height = (parseInt(boxStyle.height) + newY) + "px";
         }
-        //edge case, if box is at minimum specs, we want a certain behaviour
-        if((parseInt(boxStyle.minWidth) == parseInt(boxStyle.width))){
-            if(newX >= 0 && event.clientX > parseInt(boxStyle.left) +
-            parseInt(boxStyle.width)){
-                box.style.width = (parseInt(boxStyle.width) + newX) + "px"
-            }
-        }
-        else{
-            box.style.width = (parseInt(boxStyle.width) + newX) + "px"
-        }
-    }
-    function resizeLeft(event){
-        event = event || window.event;
-        event.preventDefault();
-        event.stopPropagation();
-        newX = event.clientX - origX;
-        origX = event.clientX;
-        console.log("This is left " + boxStyle.left + " and this is width " + parseInt(boxStyle.width) + "and this is " + newX )
-        //edge case, if box is at minimum specs, we want a certain behaviour
-        if((parseInt(boxStyle.minWidth) == parseInt(boxStyle.width))){
-            if(newX <= 0 && event.clientX < parseInt(boxStyle.left)){
-                box.style.left = parseInt(boxStyle.left) + newX + "px";
-                box.style.width = (parseInt(boxStyle.width) - newX) + "px"
-            }
-        }
-        else{
-            console.log(parseInt(boxStyle.width) + " " + newX + " " + boxStyle.minWidth)
-            if((parseInt(boxStyle.width) - newX) < parseInt(boxStyle.minWidth)){
-                box.style.left = (parseInt(boxStyle.left) + (parseInt(boxStyle.width) - parseInt(boxStyle.minWidth))) + "px";
-                box.style.width = parseInt(boxStyle.minWidth) + "px"            
-            }
-            else{
-                box.style.left = parseInt(boxStyle.left) + newX + "px";
-                box.style.width = (parseInt(boxStyle.width) - newX) + "px"
-            }
-        }
-
-    }
-    function resizeTop(event){
-        event = event || window.event;
-        event.preventDefault();
-        event.stopPropagation();
-        newY = event.clientY - origY;
-        origY = event.clientY;
-        //edge case, if box is at minimum specs, we want a certain behaviour
-        if((parseInt(boxStyle.minHeight) == parseInt(boxStyle.height))){
-            prevTop = parseInt(boxStyle.top);
-            if(newY <= 0 && event.clientY < parseInt(boxStyle.top)){
-                box.style.top = parseInt(boxStyle.top) + newY + "px";
-                box.style.height = (parseInt(boxStyle.height) - newY) + "px"
-            }
-        }
-        else{
-            if((parseInt(boxStyle.height) - newY) < parseInt(boxStyle.minHeight)){
-                box.style.top = (parseInt(boxStyle.top) + (parseInt(boxStyle.height) - parseInt(boxStyle.minHeight))) + "px";
-                box.style.height = parseInt(boxStyle.minHeight) + "px"            
-            }
-            else{
-                box.style.top = parseInt(boxStyle.top) + newY + "px";
-                box.style.height = (parseInt(boxStyle.height) - newY) + "px"
-            }
-        }
-    }
-    function resizeRight(event){
-        event = event || window.event;
-        event.preventDefault();
-        event.stopPropagation();
-        newX = event.clientX - origX;
-        origX = event.clientX;
-        //edge case, if box is at minimum specs, we want a certain behaviour
-        if((parseInt(boxStyle.minWidth) == parseInt(boxStyle.width))){
-            if(newX >= 0 && event.clientX > parseInt(boxStyle.left) +
-            parseInt(boxStyle.width)){
-                box.style.width = (parseInt(boxStyle.width) + newX) + "px"
-            }
-        }
-        else{
-            box.style.width = (parseInt(boxStyle.width) + newX) + "px"
-        }
-
-    }
-    function resizeBottom(event){
-        event = event || window.event;
-        event.preventDefault();
-        event.stopPropagation();
-        newY = event.clientY - origY;
-        origY = event.clientY;
-        //edge case, if box is at minimum specs, we want a certain behaviour
-        if((parseInt(boxStyle.minHeight) == parseInt(boxStyle.height))){
-            prevTop = parseInt(boxStyle.top);
-            if(newY >= 0 && event.clientY > parseInt(boxStyle.top) +
-            parseInt(boxStyle.height)){
-                box.style.height = 
-                (parseInt(window.getComputedStyle(box).height) + newY) + "px";
-            }
-        }
-        else{
-            box.style.height = (parseInt(boxStyle.height) + newY) + "px";
-        }
-    }
-    function stopResize(event){
-        document.onmousemove = null;
-        document.onmouseup = null;
-        document.documentElement.style.cursor = "";
     }
 }
