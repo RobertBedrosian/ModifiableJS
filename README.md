@@ -7,6 +7,7 @@ https://jsfiddle.net/nLc2rjbu/
 
 ### End-User Requirements
 The end-user should have a div with specified min-width and min-height.
+Also a border is needed
 
 ### Example
 ```
